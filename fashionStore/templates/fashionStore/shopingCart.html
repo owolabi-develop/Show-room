@@ -1,0 +1,69 @@
+{% extends 'fashionStore/index.html' %}
+{% load static %}
+{% block contentWrapper %}{% endblock contentWrapper %}
+{% block sortMenu %}{% endblock sortMenu %}
+
+{% block ProductContainer %}
+<div class="cart-item">
+<div class="cart-title"><p>Cart({{orders.cart_item}})</p></div>
+
+<table>
+   
+    <tr>
+    <thead>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+    </thead>
+    </tr>
+    {% if item %}
+    {% for items in item %}
+    <tr>
+        <td>
+           <p><img src="{{items.product.image.url}}" alt="" srcset="">
+            <b>{{items.product.name}}</b>
+            <br/>
+        
+        </td>
+        {% if items.quantity < 2  %}
+        <td><a href="{% url 'fashionStore:minus-Quantity' items.product.id  %}" style="text-decoration:none;color:white"><button class="minus" disabled>-</button></a>
+            {% else %}
+            <td><a href="{% url 'fashionStore:minus-Quantity' items.product.id  %}" style="text-decoration:none;color:white"><button class="minus">-</button></a>
+        {% endif %}
+        <input type="text" name="quantity" value="{{items.quantity}}"><a href="{% url 'fashionStore:plusQuantity' items.product.id %}"><button class="plus">+</button></a>
+        </td>
+        <td><p>&#8358;{{items.product.price}}</p></td>
+        <td><p>&#8358;{{items.total_price}}</p></td>
+        <td><a href="{% url 'fashionStore:delete-product' items.product.id %}"><button class="remove-p">Remove</button></a></td>
+    </tr>
+   
+    {% endfor %}
+    {% else %}
+    <p style="text-align:center;">Your Cart is Empty</p>
+    {% endif %}  
+</table>
+
+<div class="cart-footer">
+    {% if item %}
+     <a href="{% url 'fashionStore:empty-cart' %}"><button class="empty-cart" style="float:right ;">Empty Cart</button></a>
+     {% else %}
+
+     {% endif %}
+   <a href="{% url 'fashionStore:index' %}"> <button class="continue-shop">Continue Shopping</button></a>
+    
+</div>
+</div>
+
+<div class="cart-summary">
+    <div class="cart-title"><p>Summary</p></div>
+    <p style="padding:0px 10px; font-weight:bold; font-size: 12px;">Subtotal &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{orders.cart_total}} </p>
+
+    <div class="cart-summary-button">
+        <button class="cart-btn-checkout"><a href="{% url 'fashionStore:Checkout-page' %}" style="text-decoration: none; color:aliceblue">Checkout (&#8358;{{orders.cart_total}})</a></button>
+    </div>
+</div>
+
+{% endblock ProductContainer %}
+
+{% block paginationholder %}{% endblock paginationholder %}

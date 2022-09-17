@@ -1,0 +1,6 @@
+
+    {% autoescape off %}
+     Hi {{ user.first_name }}. Follow the link below to Change your Password:
+{{ protocol}}://{{ domain }}{% url 'fashionStore:password-reset' uidb64=uid token=token %}
+    
+    {% endautoescape %}

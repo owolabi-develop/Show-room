@@ -1,0 +1,104 @@
+{% extends 'fashionStore/index.html' %}
+{% load static %}
+
+{% block contentWrapper %}{% endblock contentWrapper %}
+
+{% block ProductContainer %}
+<div class="product-data">
+    <div class="product-image">
+        <div>
+            <img src="{{product.image.url}}">
+          </div>
+
+    </div>
+    <div class="product-title">
+        <p>{{product.name}}</p>
+        <p>{{product.brand}}</p>
+        <p>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            </p>
+            <p style="font-weight: bold;">&#8358; {{product.price}}</p>
+           <a href ="{% url 'fashionStore:add-to-cart' product.id %}" style="text-decoration:none;"> <div class="detail-cart-btn">Add To Cart</div></a>
+            <br>
+            <p style="font-weight: bold;">Product Details</p>
+            <p>{{product.desc}}</p>
+    </div>
+</div>
+<!--delivery and return-->
+<div class="product-delivery">
+   <div class="delivery-text">
+    <span style="font-weight:bold;">DELIVERY & RETURN</span>
+   </div>
+
+   <div class="delivery-text">
+    <p style="font-style:italic; font-weight:bold;">FashionStore Express</p>
+   <p>Free delivery on thousands of products in Lagos, Ibadan & Abuja Details</p>
+   </div>
+<!--dev detals-->
+   <div class="delivery-text">
+    <p style="font-weight:bold;">Choose your location</p>
+    <form>
+        <select name="state" id="state"></select>
+        <br/>
+        <br/>
+        <select name="City" id="state"></select>
+    </form>
+    <p><i class="fa-solid fa-truck"></i> Door Delivery 
+        Delivery ₦ 950
+        Delivery by 23 August 
+    </p>
+
+    <p><i class="fa-solid fa-building-flag"></i></i> Pickup Station
+        Delivery ₦ 730
+        Pickup by 23 August 
+    </p>
+   </div>
+   <!--delivery -detal-->
+   <div class="delivery-text">
+    <p><i class="fa-solid fa-person-walking-arrow-loop-left"></i>Return Policy<br/>
+        Free return within 15 days</p>
+   
+   </div>
+
+   <div class="delivery-text">
+    <p><i class="fa-solid fa-hourglass-start"></i>Warranty <br> Technical Issue</p>
+   
+   </div>
+</div>
+
+<!--delivery and return-->
+<!--you-may also like-->
+<div class="also-like">
+    <h3>You may also like</h3>
+    <div class="also-like-data">
+        {% if related_p %}
+        {% for  related_p in  related_p %}
+        <a href="{% url 'fashionStore:details' related_p.id %}" style="text-decoration:none;color:tomato;">
+        <div class="Productholder">
+            <img src="{{related_p.image.url}}">
+            <p style="font-weight:bold;">{{related_p.name|title}}</p>
+            <p>&#8358;{{related_p.price}}</p>
+            <p>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            </p>
+          
+        </div></a>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+<!--you-may also like-->
+
+
+{% endblock ProductContainer %}
+
+{% block paginationholder %}{% endblock paginationholder %}

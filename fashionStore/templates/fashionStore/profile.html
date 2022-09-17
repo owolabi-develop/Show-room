@@ -1,0 +1,69 @@
+{% extends 'fashionStore/index.html' %}
+{% load static %}
+{% block shopcart %}
+<a href="{% url 'fashionStore:Shoping-cart' %}" style="text-decoration:none;"><i class="fa-solid fa-cart-shopping"></i> <span>{{orders.cart_item}}</span><a/>
+    {% endblock shopcart %}
+{% block contentWrapper %}{% endblock contentWrapper %}
+{% block sortMenu %}{% endblock sortMenu %}
+
+{% block ProductContainer %}
+
+<div class="profile-menu">
+    {% block profile-menu %}
+    <a href="{% url 'fashionStore:Profile'%}"><i class="fa-solid fa-user"></i> &nbsp; My Fashion Account</a>
+    <div class="userItem">
+    <a href="{% url 'fashionStore:order'%}"> orders</a>
+    <a href="{% url 'fashionStore:Wishlist' %}">Saved items</a>
+    <a href="#">Pending Reviewed</a>
+</div>
+  <div class="userdetails">
+    <a href="{% url 'fashionStore:customer-details' %}">Details</a>
+    <a href="{% url 'fashionStore:user-Address-Book' %}">Address Book</a>
+    <a href="{% url 'fashionStore:changePassword' %}">Change Password</a>
+    <a href="{% url 'fashionStore:new-seletter' %}">Newseletter Preference</a>
+    <a href="{% url 'fashionStore:close-account' %}">Close Account</a>
+
+  </div>
+  <a href="{% url 'fashionStore:Login' %}">Logout</a>
+  {% endblock profile-menu %}
+</div>
+<div class="profile-content">
+    {% block profile-content %}
+    <div class="profile-content-title">{% block profile-content-title %}Account OverView{% endblock profile-content-title %}</div>
+    <div class="profile-content-details">
+        {% block profile-content-details %}
+        <div class="profile-details-holder">
+           <div class="profile-details-header"><a href="{% url 'fashionStore:customer-details' %}"><i class="fa-solid fa-pen"></i></a><p>Account Details</p></div>
+           <p style="padding:5px;">{{request.user.first_name|title}} {{request.user.last_name|title}}</p>
+           <p style="padding:0px 5px; color:lightgray;">{{request.user.email|title}}</p>
+           <br/>
+
+           <button class="btn"><a href="{% url 'fashionStore:changePassword' %}">Change Password</a></button>
+        </div>
+
+        <div class="profile-details-holder">
+            <div class="profile-details-header"><a href=""><i class="fa-solid fa-pen"></i></a><p>Address Book</p></div>
+            {% if customer_address %}
+        <p style="padding-left:5px;" >State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{customer_address.Region}}</p>
+        <p style="padding-left:5px;">City:&nbsp;&nbsp;&nbsp;&nbsp;{{customer_address.City}}</p>
+        <p style="padding-left:5px;">Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{customer_address.phoneNumber}}</p>
+        <p style="padding-left:5px;">Delivery Address:&nbsp;&nbsp;&nbsp;{{customer_address.Delivery_address|truncatewords:"4"}}</p>
+      
+        {% else %}
+            <button class="btn"><a href="{% url 'fashionStore:Create-Address-book' %}">Add Default Address</a></button>
+            {% endif %}
+         </div>
+
+         <div class="profile-details-holder">
+            <div class="profile-details-header"><p>NEWSLETTER PREFERENCES</p></div>
+            <button class="btn" >Subscribe</button>
+         </div>
+
+
+        {% endblock profile-content-details %}
+    </div>
+    {% endblock profile-content %}
+</div>
+{% endblock ProductContainer %}
+
+{% block paginationholder %}{% endblock paginationholder %}

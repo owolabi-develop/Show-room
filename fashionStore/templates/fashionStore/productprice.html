@@ -1,0 +1,105 @@
+{% extends 'fashionStore/index.html' %}
+{% load static %}
+{% block contentWrapper %}{% endblock contentWrapper %}
+{% block ProductContainer %}
+
+<div class="search-category">
+     <!--search cat holder-->
+    {% if cats %}
+    {% for cats in cats  %}
+    <a href="{% url 'fashionStore:Category' cats.name %}">{{cats.name|title}}</a>
+    {% endfor %}
+    {% endif %}
+    <!--search cat holder-->
+    <div class="search-header">
+        <p>Brand</p>
+        {% if brand %}
+        {% for brand in brand %}
+        <a href="{% url 'fashionStore:product-brands' brand.brand %}"><button id="brand-btn"></button> &nbsp;<label for="Sizes">{{brand.brand}}</label></a>
+        {% endfor %}
+        {% endif %}
+    </div>
+    
+    <div class="search-header">
+        <p>Price(&#8358;)</p>
+        <form action="{% url 'fashionStore:product-price' %}" method="get">
+           {% csrf_token %}
+           
+          <input type="number" name="low" id="low">- <input type="number" name="hi" id="high">
+          <br> 
+          <input type="submit" value="Apply">
+        </form>
+    </div>
+
+    <div class="search-header">
+        <p>Size</p>
+        {% if size %}
+        {% for sizes in size %}
+        <a href="{% url 'fashionStore:product-size' sizes.size %}"><button id="size-btn"></button> &nbsp;<label for="Sizes">{{sizes.size}}</label></a>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+</div>
+<!--search-cate-->
+
+
+<div class="search-product-data">
+    <div class="search-p-d-menuwrapper">
+    <div class="brands"><p>Price:{{category1.name}}</p></div>
+
+    
+    </div>
+    {% if price %}
+    <div class="total-found"><p>{{price|length}} products Found</p></div>
+    {% else %}
+    <div class="total-found"><p> 0 products Found</p></div>
+    {% endif %}
+
+    <div class="search-product-holder">
+
+        {% if price %}
+    {% for products in price  %}
+   <a href="{% url 'fashionStore:details' products.id %}" style="text-decoration:none;color:tomato;"> <div class="Productholder">
+        <img src="{{products.image.url}}">
+        <p style="font-weight:bold;">{{products.name}}</p>
+        <p>&#8358;{{products.price}}</p>
+        <p>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        </p>
+        <div class="cartbtn">
+            <a href="{% url 'fashionStore:add-Wishlist' products.id %}" style="font-size:20px; float:right; text-decoration:none; padding-top:5px;"><i class="fa-regular fa-heart" style="font-size:20px;"></i> &nbsp;</a>
+            <form action="{% url 'fashionStore:add-to-cart' products.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Add To Cart">
+            </form>
+        </div>
+    </a>
+    </div>
+    {% endfor %}
+    {% endif %}
+    </div>
+</div>
+{% endblock ProductContainer %}
+
+<div class="paginationholder">
+    {% block paginationholder %}
+        <div class="pagination">
+            {% if category.has_previous  %}
+            <a href="?page={{ category.previous_page_number}}">&nbsp;&laquo;</a>
+            {% endif %}
+            {% for range in category.paginator.page_range %}
+            <a href="?page={{range}}">{{range}}</a>
+            {% endfor %}
+            
+            {% if product.has_next  %}
+            <a href="?page={{  category.next_page_number}}">&nbsp;&raquo;</a>
+            <a href="?page={{  category.paginator.num_pages }}">last&nbsp; &raquo;</a>
+            {% endif %}
+      </div>
+      {% endblock paginationholder %}
+</div>

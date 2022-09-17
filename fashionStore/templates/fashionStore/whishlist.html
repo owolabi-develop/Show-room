@@ -1,0 +1,32 @@
+{% extends 'fashionStore/profile.html' %}
+{% load static %}
+{% block profile-content %}
+<div class="profile-content-title"> <i class="fa-regular fa-heart" style="font-size:20px;"></i> &nbsp;{% block profile-content-title %} My Wishlist{% endblock profile-content-title %}</div>
+<br/>
+<div class="Wishlist-container">
+    <table>
+        <tr>
+            <thead>
+                <th></th>
+                <th></th>
+                <th>Product Name</th>
+                <th>Unity Price</th>
+                <th>Stock Status</th>
+            </thead>
+        </tr>
+        {% if saveItem %}
+        {% for saveItems in saveItem %}
+        <tr>
+            <td><a href="{% url 'fashionStore:remove-Wishlist' saveItems.product.id %}"><i class="fa-regular fa-trash-can"></i></a></td>
+            <td><a href="{% url 'fashionStore:details' saveItems.product.id %}"><img src="{{saveItems.product.image.url}}" alt="" srcset=""></a></td>
+            <td>{{saveItems.product.name}}</td>
+            <td>{{saveItems.product.price}}</td>
+            <td>In Stock</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p style="text-align:center;">Your WishList is empty</p>
+        {% endif %}
+    </table>
+</div>
+{% endblock profile-content %}
