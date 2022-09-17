@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User,Product,order,OrderItem,Product_category,WhishList,ProductBrand,ProductSize
+from .models import User,Product,order,OrderItem,category_products,WhishList,ProductBrand,ProductSize
 from .forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import Group
@@ -52,7 +52,7 @@ class UserAdmin(BaseUserAdmin):
    
 admin.site.register(User, UserAdmin)
 admin.site.register(Product)
-admin.site.register(Product_category)
+admin.site.register(category_products)
 
 
 admin.site.register(OrderItem)

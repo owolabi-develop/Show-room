@@ -38,9 +38,9 @@ import secrets
 from paystackapi.paystack import Paystack
 paystack = Paystack(secret_key=publish_key2)
 
-cat1 = Product_category
-cat = Product_category.objects.all()
-cat2 = Product_category.objects.all()[:7]
+cat1 = category_products
+cat =  category_products.objects.all()
+cat2 = category_products.objects.all()[:7]
 customer_add = AddressBook
 
 # generate transaction id =====================================
