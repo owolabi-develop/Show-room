@@ -148,7 +148,7 @@ def index(request):
   if request.user.is_authenticated:
      products = Product.objects.all()
      cats = cat
-     paginator = Paginator(products,22)
+     paginator = Paginator(products,20)
      page_number = request.GET.get('page')
      allproducts = paginator.get_page(page_number)
      customer = request.user.profile
