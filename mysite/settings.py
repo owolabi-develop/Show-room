@@ -135,6 +135,7 @@ MEDIA_URL = 'media/'
 
 #MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIR = (os.path.join(BASE_DIR,'static'))
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME ='ecommerce-fashion-store'
