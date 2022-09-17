@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import django_heroku
+#import django_heroku
 
 import environ
 import os
@@ -30,9 +30,9 @@ MY_PAY_STACK_KEY_SECRETE = env('MY_PAY_STACK_KEY_SECRETE')
 MY_PAY_STACK_KEY_PUBLIC = env('MY_PAY_STACK_KEY_PUBLIC')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['owolabi-ecommerce.herokuapp.com']
 
 
 # Application definition
@@ -156,4 +156,4 @@ DEFAULT_FROM_EMAIL ='owolabidevelop84@gmail.com'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 AUTH_USER_MODEL = 'fashionStore.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
