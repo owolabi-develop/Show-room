@@ -87,7 +87,7 @@ class Profile(models.Model):
 
 
 
-class Category(models.Model):
+class Product_category(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self) -> str:
@@ -110,7 +110,7 @@ class Product(models.Model):
     price = models.IntegerField()
     image = models.FileField(upload_to='product/')
     desc = models.TextField(max_length=255)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Product_category)
     sizes = models.ManyToManyField(ProductSize)
     brand = models.ManyToManyField(ProductBrand)
    
