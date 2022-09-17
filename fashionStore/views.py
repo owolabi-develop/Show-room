@@ -172,7 +172,7 @@ def details(request,product_id):
   related_p = Product.objects.order_by('image').reverse()[:5]
   customer = request.user.profile
   orders,create = order.objects.get_or_create(owner_user=customer,is_ordered=False)
-  return render(request,'FashionStore/details.html',{'product':product,'related_p':related_p,'cat2':cat2,'orders':orders})
+  return render(request,'fashionStore/details.html',{'product':product,'related_p':related_p,'cat2':cat2,'orders':orders})
 
 #product Category page ==============
 def Category(request,category_name):
