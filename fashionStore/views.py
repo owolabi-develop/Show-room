@@ -129,8 +129,8 @@ def password_reset(request,uidb64,token):
         if form.is_valid():
           form.save()
           return HttpResponseRedirect(reverse("fashionStore:Profile"))
-      else:
-         form = UserSetPassword(user)
+    else:
+      form = UserSetPassword(user)
     return render('fashionStore/password_reset_confirm.html',{'form':form})
     
 
