@@ -120,19 +120,9 @@ def User_logOut(request):
 def password_down(request):
     return render(request,'fashionStore/password-down.html')
 
-def password_reset(request,uidb64,token):
-    uid = force_str(urlsafe_base64_decode(uidb64))
-    user = get_object_or_404(get_user_model(),pk=uid)
-    if user is not None and account_activation_token.check_token(user,token):
-      if request.method == "POST":
-        form = UserSetPassword(request.POST,instance=user)
-        if form.is_valid():
-          form.save()
-          return HttpResponseRedirect(reverse("fashionStore:Profile"))
-    else:
-      form = UserSetPassword(user)
-    return render(request,'fashionStore/password_reset_confirm.html',{'form':form})
-    
+class password_reset(PasswordResetConfirmView):
+    template_name = "fashionStore/UserSetpassword.html"
+    success_url = reverse_lazy("fashionStore:password_reset_complete")
 
 
 def password_reset_complete(request):
