@@ -132,8 +132,6 @@ def password_reset(request,uidb64,token):
       else:
          form = UserSetPassword(user)
       return render('fashionStore/password_reset_confirm.html',{'form':form})
-    else:
-        return HttpResponse("Activation link invalid")
     
 
 
