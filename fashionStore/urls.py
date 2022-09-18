@@ -16,7 +16,7 @@ urlpatterns = [
         views.email_confirm, name='Email-activate'),
     path("forgotpassword/",views.forgotPassword,name='forgotpassword'),
     re_path('^Password-reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z_\-]+)$',
-        auth_views.PasswordResetConfirmView.as_view(template_name='fashionStore/password_reset_confirm.html'), name='password-reset'),
+        views.password_reset, name='password-reset'),
     path("Signup_success/",views.Signup_success,name='Signup_success'),
     path("Customer/Account/",views.UserProfile,name="Profile"),
     path("Customer/Wishlist/",views.Wishlist,name='Wishlist'),
