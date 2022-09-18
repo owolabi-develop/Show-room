@@ -121,7 +121,7 @@ def password_down(request):
     return render(request,'fashionStore/password-down.html')
 
 class password_reset(PasswordResetConfirmView):
-    template_name = "fashionStore/UserSetpassword.html"
+    template_name = "fashionStore/password_reset_confirm.html"
     success_url = reverse_lazy("fashionStore:password_reset_complete")
 
 
