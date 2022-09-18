@@ -123,7 +123,7 @@ def password_down(request):
 class password_reset(PasswordResetConfirmView):
     template_name = "fashionStore/UserSetpassword.html"
     success_url = reverse_lazy("fashionStore:password_reset_complete")
-
+    form_class = UserSetPassword
 
 def password_reset_complete(request):
     return render(request,'fashionStore/passwordchange.html')

@@ -20,9 +20,6 @@ class UserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name','last_name','email','phoneNumber')
-        widgets ={
-            'subscribe':forms.CheckboxInput,
-        }
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -56,6 +53,9 @@ class UserSetPassword(SetPasswordForm):
         for field_name in self.fields:
             field = self.fields.get(field_name)
             self.fields[field_name].widget.attrs.update({'placeholder':field.label})
+    class Meta:
+        model = User
+        field = "__all__"
 
 class ProfileForm(forms.ModelForm):
     def __init__(self,*args,**kwargs):
