@@ -30,7 +30,7 @@ MY_PAY_STACK_KEY_SECRETE = env('MY_PAY_STACK_KEY_SECRETE')
 MY_PAY_STACK_KEY_PUBLIC = env('MY_PAY_STACK_KEY_PUBLIC')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['owolabi-ecommerce.herokuapp.com']
 
