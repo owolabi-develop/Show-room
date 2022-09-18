@@ -120,10 +120,10 @@ def User_logOut(request):
 def password_down(request):
     return render(request,'fashionStore/password-down.html')
 
-class password_reset(PasswordResetConfirmView):
-    template_name = "fashionStore/password_reset_confirm.html"
-    success_url = reverse_lazy("fashionStore:password_reset_complete")
-    form_class = UserSetPassword
+#class password_reset(PasswordResetConfirmView):
+    #template_name = "fashionStore/password_reset_confirm.html"
+    #success_url = reverse_lazy("fashionStore:password_reset_complete")
+    #form_class = UserSetPassword
 
 def password_reset_complete(request):
     return render(request,'fashionStore/passwordchange.html')
