@@ -519,7 +519,7 @@ def Payment_method(request):
       "email":email,
       "amount":orders.cart_total*100,
       "reference":secrets.token_urlsafe(11),
-      "callback_url":"https://owolabi-ecommerce.herokuapp.com/Payment-verify/"
+      "callback_url":"https://show-room-store-app-jr4om.ondigitalocean.app/Payment-verify/"
      
       }
     response = requests.post(url=url,headers=headers,data=payload)
